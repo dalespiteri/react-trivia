@@ -38,14 +38,23 @@ $(function (){
         var list = document.getElementById('answerList');
         var answer = document.createTextNode(answerArray[i].answer);
         var correct = answerArray[i].correct;
+        li.className = 'answer ';
         if (correct === false) {
-          li.className = 'incorrect';
+          li.className += 'incorrect';
         } else {
-          li.className = 'correct';
+          li.className += 'correct';
         }
         li.appendChild(answer);
         list.appendChild(li);
       }
+
+      $('.answer').click(function() {
+        if ($(this).hasClass('incorrect')) {
+          alert('wrong');
+        } else {
+          alert('right');
+        }
+      })
 
     }
   });
