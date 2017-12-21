@@ -1,24 +1,3 @@
-// $(document).ready(function () {
-//
-//   $.getJSON('https://opentdb.com/api.php?amount=10&category=21', function(triviaResults) {
-//     var testtriv = triviaResults.results;
-//     console.log(test)
-//   });
-//
-//   function addElement() {
-//     var newDiv = document.createElement('div');
-//     var newContent = document.createTextNode(questions);
-//     newDiv.appendChild(newContent);
-//     var currentDiv = document.getElementById('questions');
-//     document.body.insertBefore(newDiv, currentDiv);
-//     console.log(testtriv);
-//   }
-//
-//   addElement();
-//
-// });
-
-
 $(function (){
 
   var $questionDiv = $('#questions');
@@ -30,15 +9,44 @@ $(function (){
       var questionArray = data.results;
       console.log(questionArray);
       var question = document.getElementById('headQuestion');
-      var list = document.getElementById('answerList');
       question.innerHTML = questionArray[0].question;
+      var answerArray = [];
 
       for (i = 0; i < questionArray[0].incorrect_answers.length; i++) {
-              var listItem = document.createElement('li');
-              var wrongAnswer = document.createTextNode(questionArray[0].incorrect_answers[i]);
-              listItem.appendChild(wrongAnswer);
-              list.appendChild(listItem);
+              answerArray.push({answer: questionArray[0].incorrect_answers[i], correct: false});
       }
+
+      answerArray.push({answer: questionArray[0].correct_answer, correct: true});
+
+      function shuffle(array) {
+        var m = array.length, t, i;
+        while (m) {
+        i = Math.floor(Math.random() * m--);
+        t = array[m];
+        array[m] = array[i];
+        array[i] = t;
+        }
+        return array;
+      }
+
+      answerArray = shuffle(answerArray);
+
+      console.log(answerArray);
+
+      for (i = 0; i < answerArray.length; i++) {
+        var li = document.createElement('li');
+        var list = document.getElementById('answerList');
+        var answer = document.createTextNode(answerArray[i].answer);
+        var correct = answerArray[i].correct;
+        if (correct === false) {
+          li.className = 'incorrect';
+        } else {
+          li.className = 'correct';
+        }
+        li.appendChild(answer);
+        list.appendChild(li);
+      }
+
     }
   });
 });
