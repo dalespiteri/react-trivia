@@ -1,0 +1,51 @@
+/* Note 1: let, const, and var */
+/* While var is universally accessible, most browsers have advanced to the point 
+   where you can use the alternate syntax of "let" and "const"; 
+
+   The difference is subtle, yet meaningful. 
+
+   "var" declares a variable inside a *function scope* - so that if you were to write a function:
+
+   function foo (){
+      for(var index = 0; index < 10; index++){
+        // do something; 
+      }
+     console.log(index) //=> logs> 10; 
+   }
+
+   "let" declares a variable inside a block scope, so that if you were to write a function:
+   function bar(){
+     for(let index = 0; index < 10; index++){
+       //do something;
+     }
+     console.log(index) //=> logs> undefined
+   }
+
+   A subtle difference, but one which can avoid namespace collisions. 
+
+   Furthermore, const assigns a variable which cannot be reassigned later. 
+   The variable (in the case of complex objects, arrays, and the like), can be *changed*, 
+   but it cannot be reassigned. 
+
+   var foo = "bar";
+   foo = "notBar" // fine
+   let foo2 = "bar" 
+   foo2 = "notBar" // also fine
+   const foo3 = "bar"
+   foo3 = "notBar" // throws an error. 
+
+   const foo4 = {bar: "this is bar"} 
+   foo4 = {bar: "this is notBar"} // throws an error;
+   foo.bar = "this is notBar" // actually works. 
+*/
+
+/* Note 2: Array prototype */
+
+  // Arrays have a built in method onto their prototype which allows you to
+  // use methods such as "forEach", "reduce", and "Map".
+  // forEach just runs the element in a loop, like a normal for-loop.
+  // map creates a new array after running a function on every element of the array
+  // and reduce adds up all of the values of the array after a function.
+  // I'm going to use 'map' here.
+  // look up the documentation for javascript 'map' online, and you can
+  // start to get a feel of how I'm doing this without for-loops.
