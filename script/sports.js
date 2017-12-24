@@ -92,6 +92,12 @@ const appendQuestionsToDOM = function(questionArray) {
   // but jQuery is built upon side-effects.
 };
 
+const appendScoreToDOM = function (score) {
+  let $scoreSpace = $('#scoreSpace');
+  let $score = '<p>' + score + '</p>';
+  $scoreSpace.empty().append($score);
+}
+
 /**
  * $(document.ready)  // shorthand for $(document).ready(function() { ... });\
  */
@@ -110,12 +116,17 @@ $(function() {
       // if we wanted to, we could factor this out into a seperate function.
       // but we'd still need to call that seperate function inside this callback.
       $('.qs0').addClass('active');
+      let score = 0;
       $(".answer").click(function() {
         // set up the clicks.
         if ($(this).hasClass("correct")) {
           alert("RIGHT!");
+          score += 10;
+          appendScoreToDOM(score);
         } else {
           alert("WRONG");
+          score += 0;
+          appendScoreToDOM(score);
         }
       });
 
