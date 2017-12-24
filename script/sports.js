@@ -55,17 +55,6 @@ const processQuestions = function(questionArray) {
   });
 };
 
-// const appendQuestionToDOM = function(questionArray) {
-//   questionArray.forEach(function(element) {
-//     var getDiv = document.getElementById('questionContainer')
-//     let $question = '<div class="question">' + element.question + '</div>';
-//     let $answers = '<ul>' + element.answers.map(function(a){
-//       return '<li class="answer">' + a.answer + '</li>';
-//     }).join('') + '</ul>';
-//     console.log(element.question);
-//   });
-// };
-
 /**
  * appendQuestionsToDOM()
  * appends questions to the dom
@@ -92,10 +81,16 @@ const appendQuestionsToDOM = function(questionArray) {
   // but jQuery is built upon side-effects.
 };
 
+/**
+  appendScoreToDOM();
+  append a score to the DOM
+  @param {value} score - an updated score value
+  @sideEffects: DOM manipulation using jquery
+  */
 const appendScoreToDOM = function (score) {
-  let $scoreSpace = $('#scoreSpace');
+  let $scoreSpace = $('#scoreSpace'); // get our DIV for our score
   let $score = '<p>' + score + '</p>';
-  $scoreSpace.empty().append($score);
+  $scoreSpace.empty().append($score); // empty the DIV before updating it with a new value
 }
 
 /**
@@ -116,7 +111,7 @@ $(function() {
       // if we wanted to, we could factor this out into a seperate function.
       // but we'd still need to call that seperate function inside this callback.
       $('.qs0').addClass('active');
-      let score = 0;
+      let score = 0; // score we use for appendScoreToDOM();
       $(".answer").click(function() {
         // set up the clicks.
         if ($(this).hasClass("correct")) {
