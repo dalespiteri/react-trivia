@@ -1,0 +1,7 @@
+.questionSpace {
+  display: none;
+}
+
+.active {
+  display: block;
+}
