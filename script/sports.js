@@ -121,6 +121,26 @@ const appendScoreToDOM = function (score) {
 }
 
 /**
+  questionTracker();
+  fills in the question tracker for right or wrong answers
+  @param {array} qtArray - an array with true or false booleans
+  @sideEffects: DOM manipulation using jQuery
+  */
+  const questionTracker = function (qtArray) {
+    let $questionTracker = $('#questionTracker');
+    let $correct = '<div class="questionTrackerSection"> Y </div>';
+    let $wrong = '<div class="questionTrackerSection"> N </div>';
+    $questionTracker.empty();
+    qtArray.forEach(function (element) {
+      if (element === true) {
+        $questionTracker.append($correct);
+      } else {
+        $questionTracker.append($wrong);
+      }
+    });
+  }
+
+/**
  * $(document.ready)  // shorthand for $(document).ready(function() { ... });\
  */
 $(function() {
@@ -139,16 +159,21 @@ $(function() {
       // but we'd still need to call that seperate function inside this callback.
       $('.qs0').addClass('active');
       let score = 0; // score we use for appendScoreToDOM();
+      let correct = []; // array used for questionTracker();
       $(".answer").click(function() {
         // set up the clicks.
         if ($(this).hasClass("correct")) {
           alert("RIGHT!");
           score += 10;
           appendScoreToDOM(score);
+          correct.push(true);
+          questionTracker(correct);
         } else {
           alert("WRONG");
           score += 0;
           appendScoreToDOM(score);
+          correct.push(false);
+          questionTracker(correct);
         }
       });
       changeActiveQuestion(
