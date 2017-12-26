@@ -82,6 +82,33 @@ const appendQuestionsToDOM = function(questionArray) {
 };
 
 /**
+  changeActiveQuestion();
+  remove the active class on the current question after an answer is clicked
+  add an active class to the next question in line using recursive
+  @param {number} qNumber -- the question number of the current visible question
+  @param {number} end -- the length of the questions array
+  @param {function} callback --  a success function to run after the recursive function finishes
+  @sideEffects: adds and removes active class from question elements
+  */
+  const changeActiveQuestion = function (
+    qNumber,
+    end,
+    callback
+  ) {
+    if (!end || qNumber < end) {
+      $('.qs' + qNumber + ' ul li').click(function(){
+        $('.qs' + qNumber).removeClass('active');
+        $('.qs' + (qNumber + 1)).addClass('active');
+        changeActiveQuestion(qNumber + 1, end, callback);
+      });
+    } else {
+      if (callback) {
+        callback();
+      }
+    }
+  };
+
+/**
   appendScoreToDOM();
   append a score to the DOM
   @param {value} score - an updated score value
@@ -124,44 +151,13 @@ $(function() {
           appendScoreToDOM(score);
         }
       });
-
-      $('.qs0 ul li').click(function(){
-        $('.qs0').removeClass('active');
-        $('.qs1').addClass('active');
-      });
-      $('.qs1 ul li').click(function(){
-        $('.qs1').removeClass('active');
-        $('.qs2').addClass('active');
-      });
-      $('.qs2 ul li').click(function(){
-        $('.qs2').removeClass('active');
-        $('.qs3').addClass('active');
-      });
-      $('.qs3 ul li').click(function(){
-        $('.qs3').removeClass('active');
-        $('.qs4').addClass('active');
-      });
-      $('.qs4 ul li').click(function(){
-        $('.qs4').removeClass('active');
-        $('.qs5').addClass('active');
-      });
-      $('.qs5 ul li').click(function(){
-        $('.qs5').removeClass('active');
-        $('.qs6').addClass('active');
-      });
-      $('.qs6 ul li').click(function(){
-        $('.qs6').removeClass('active');
-        $('.qs7').addClass('active');
-      });
-      $('.qs7 ul li').click(function(){
-        $('.qs7').removeClass('active');
-        $('.qs8').addClass('active');
-      });
-      $('.qs8 ul li').click(function(){
-        $('.qs8').removeClass('active');
-        $('.qs9').addClass('active');
-      });
-
+      changeActiveQuestion(
+        0,
+        processedQuestions.length - 1,
+        function() {
+          console.log('success');
+        }
+      );
     }
   });
 });
