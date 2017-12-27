@@ -2,14 +2,14 @@
 shuffle()
 shuffles an array
 @param {array} arr
-@return {array}
+@return {array} a shuffled array
 **/
 
 const shuffle = function(arr) {
   let temp = null;
   let l = arr.length;
   arr.forEach(function(element, index) {
-    let randomPick = Math.floor(Math.random() * 1);
+    let randomPick = Math.floor(Math.random() * l);
     temp = arr[randomPick];
     arr[randomPick] = arr[index];
     arr[index] = temp;
@@ -66,11 +66,18 @@ const appendQuestionsToDOM = function(questionArray) {
 
   questionArray.forEach(function(q, index) {
     // for each question.
+    debugger;
     let $questionSpace = $('<div class="questionSpace qs' + index +'"></div>');
-    let $question = $('<div class="question">' + q.question + '</div>')
-    let $answers = $('<ul>' + q.answers.map(function(a){
-      return '<li class="answer answer' + (a.correct ? ' correct' : '') + '">' + a.answer + '</li>'
-    }).join('') + '</ul>');
+    let $question = $('<div class="question">' + q.question + '</div>');
+    if (index == (questionArray.length - 1)) {
+      let $answers = $('<ul>' + q.answers.map(function(a){
+        return '<li class="answerFinal' + (a.correct ? ' correct' : '') + '">' + a.answer + '</li>'
+      }).join('') + '</ul>');
+    } else {
+      let $answers = $('<ul>' + q.answers.map(function(a){
+        return '<li class="answer' + (a.correct ? ' correct' : '') + '">' + a.answer + '</li>'
+      }).join('') + '</ul>');
+    }
     $questionHead.append($questionSpace);
     $questionSpace.append($question).append($answers);
   });
@@ -127,15 +134,15 @@ const appendScoreToDOM = function (score) {
   @sideEffects: DOM manipulation using jQuery
   */
   const questionTracker = function (qtArray) {
-    let $questionTracker = $('#questionTracker');
-    let $correct = '<div class="questionTrackerSection"> Y </div>';
-    let $wrong = '<div class="questionTrackerSection"> N </div>';
-    $questionTracker.empty();
-    qtArray.forEach(function (element) {
+    let $correct = '<img src="./images/right.svg" />';
+    let $wrong = '<img src="./images/wrong.svg" />';
+    qtArray.forEach(function (element, index) {
+      console.log(index);
+      let $questionTracker = $('#questionTracker div:nth-child(' + (index + 1) + ')');
       if (element === true) {
-        $questionTracker.append($correct);
+        $questionTracker.empty().append($correct);
       } else {
-        $questionTracker.append($wrong);
+        $questionTracker.empty().append($wrong);
       }
     });
   }
@@ -162,14 +169,13 @@ $(function() {
       let correct = []; // array used for questionTracker();
       $(".answer").click(function() {
         // set up the clicks.
+
         if ($(this).hasClass("correct")) {
-          alert("RIGHT!");
           score += 10;
           appendScoreToDOM(score);
           correct.push(true);
           questionTracker(correct);
         } else {
-          alert("WRONG");
           score += 0;
           appendScoreToDOM(score);
           correct.push(false);
