@@ -102,6 +102,7 @@ const appendQuestionsToDOM = function(questionArray) {
           $(this).addClass('incorrectClick');
           $('.qs' + qNumber + ' .correct').addClass('correctClick');
         }
+        $('.qs' + qNumber + ' ul li').addClass('noEvents'); // block list items from being able to be clicked after the question is answered
         setTimeout(function(){
           $('.qs' + qNumber).removeClass('active');
           $('.qs' + (qNumber + 1)).addClass('active');
@@ -122,9 +123,9 @@ const appendQuestionsToDOM = function(questionArray) {
   @param {value} score - an updated score value
   @sideEffects: DOM manipulation using jquery
   */
-const appendScoreToDOM = function (score) {
+const appendScoreToDOM = function (score, qN) {
   let $scoreSpace = $('#scoreSpace'); // get our DIV for our score
-  let $score = '<p>' + score + '</p>';
+  let $score = '<p id="test1">' + score + ' / ' + qN + '<p/><p id="test2">answered correctly</p>';
   $scoreSpace.empty().append($score); // empty the DIV before updating it with a new value
 }
 
@@ -166,20 +167,20 @@ $(function() {
       // but we'd still need to call that seperate function inside this callback.
       $('.qs0').addClass('active');
       let score = 0; // score we use for appendScoreToDOM();
-      appendScoreToDOM(score);
       let correct = []; // array used for questionTracker();
+      appendScoreToDOM(score, correct.length);
       $(".answer").click(function() {
         // set up the clicks.
 
         if ($(this).hasClass("correct")) {
           score += 1;
-          appendScoreToDOM(score);
           correct.push(true);
+          appendScoreToDOM(score, correct.length);
           questionTracker(correct);
         } else {
           score += 0;
-          appendScoreToDOM(score);
           correct.push(false);
+          appendScoreToDOM(score, correct.length);
           questionTracker(correct);
         }
       });

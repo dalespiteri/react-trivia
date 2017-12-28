@@ -12,14 +12,21 @@
   display: none;
 }
 
+@keyframes slideUp {
+  from {transform: translateY(100%); opacity: 0;}
+  to {transform: translateY(0); opacity: 1;}
+}
+
 .active {
   display: block;
+  animation-name: slideUp;
+  animation-duration: 500ms;
 }
 
 .container {
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(to top left, #7E60A9, #D65DB1, #FF6F91, #FF9671, #FFC75F, #F9F871);
+  background-image: linear-gradient(to right top, #c44b8f, #a83e8b, #8a3487, #6a2b80, #482478);
 }
 
 .question {
@@ -33,29 +40,36 @@
   font-weight: 800;
   text-transform: uppercase;
   text-align: center;
-  font-size: 3em;
+  font-size: 2em;
   color: white;
-  text-shadow: 3px 3px 5px #FF6F91;
+  text-shadow: 3px 3px 5px #482478;
 }
 
 
 
 .answer,
 .answerFinal {
-  background-color: #7E60A9;
+  background-color: #482478;
   margin: 25px auto;
   padding-bottom: 200px;
   font-weight: 400;
   text-align: center;
-  font-size: 2em;
+  font-size: 1em;
   text-transform: uppercase;
   font-weight: 800;
+  letter-spacing: 2px;
   padding: 20px;
   width: 20%;
   list-style: none;
   color: white;
   border-radius: 20px;
   cursor: pointer;
+  transition: all 250ms;
+}
+
+.answer:hover,
+.answerFinal:hover {
+  background-color: #6a2b80;
 }
 
 #questionTracker {
@@ -66,34 +80,34 @@
 }
 
 #questionTracker div:nth-of-type(1n) {
-  background-color: #7E60A9;
+  background-color: #482478;
 }
 #questionTracker div:nth-of-type(2n) {
-  background-color: #D65DB1;
+  background-color: #6a2b80;
 }
 #questionTracker div:nth-of-type(3n) {
-  background-color: #FF6F91;
+  background-color: #482478;
 }
 #questionTracker div:nth-of-type(4n) {
-  background-color: #FF9671;
+  background-color: #6a2b80;
 }
 #questionTracker div:nth-of-type(5n) {
-  background-color: #FFC75F;
+  background-color: #482478;
 }
 #questionTracker div:nth-of-type(6n) {
-  background-color: #F9F871;
+  background-color: #6a2b80;
 }
 #questionTracker div:nth-of-type(7n) {
-  background-color: #FFC75F;
+  background-color: #482478;
 }
 #questionTracker div:nth-of-type(8n) {
-  background-color: #FF9671;
+  background-color: #6a2b80;
 }
 #questionTracker div:nth-of-type(9n) {
-  background-color: #FF6F91;
+  background-color: #482478;
 }
 #questionTracker div:nth-of-type(10n) {
-  background-color: #D65DB1;
+  background-color: #6a2b80;
 }
 
 .questionTrackerSection {
@@ -113,24 +127,34 @@
 }
 
 #scoreSpace {
+  text-align: center;
   position: fixed;
   bottom: 0;
   right: 0;
-  width: 15%;
-  height: 200px;
-  background-color: #7E60A9;
-  border-radius: 100px 0 0 0;
+  width: 25%;
+  height: 300px;
+  background-color: #482478;
+  border-radius: 150px 0 0 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
-  font-size: 7em;
   font-weight: 800;
 }
 
+#test1 {
+  font-size: 7em;
+}
+
+#test2 {
+  font-size: 1.75em;
+  position: relative;
+  bottom: 5%;
+}
+
 #questionTracker {
-  width: 85%;
+  width: 75%;
   height: 100px;
   background-color: #7E60A9;
   position: fixed;
@@ -147,22 +171,31 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #7E60A9;
+  background-color: #482478;
   z-index: 100;
   color: white;
   visibility: hidden;
   font-size: 10em;
   font-weight: 800;
+  opacity: 0;
+  transition: opacity 500ms;
 }
 
 .gameEndActive {
   visibility: visible;
+  opacity: 1;
 }
 
 .correctClick {
-  background-color: green;
+  background-color: #c44b8f;
+  color: black;
 }
 
 .incorrectClick {
-  background-color: red;
+  background-color: #c44b8f;
+  color: black;
+}
+
+.noEvents {
+  pointer-events: none;
 }
