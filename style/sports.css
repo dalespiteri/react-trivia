@@ -1,5 +1,9 @@
 @import url("https://use.typekit.net/hac8cze.css");
 
+body {
+  overflow-y: scroll;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -26,6 +30,7 @@
 .container {
   width: 100%;
   min-height: 100vh;
+  padding-bottom: 200px;
   background-image: linear-gradient(to right top, #c44b8f, #a83e8b, #8a3487, #6a2b80, #482478);
 }
 
@@ -33,7 +38,7 @@
   width: 50%;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 100px;
+  padding-top: 200px;
   margin-bottom: 100px;
   font-family: filson-soft, sans-serif;
   font-style: normal;
@@ -50,8 +55,8 @@
 .answer,
 .answerFinal {
   background-color: #482478;
-  margin: 25px auto;
-  padding-bottom: 200px;
+  margin: auto;
+  margin-top: 25px;
   font-weight: 400;
   text-align: center;
   font-size: 1em;
@@ -72,11 +77,25 @@
   background-color: #6a2b80;
 }
 
-#questionTracker {
+.scoreContainer {
   width: 100%;
-  height: 75px;
+  height: 100px;
+  position: fixed;
+  bottom: 0;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#questionTracker {
+  width: 75%;
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
 }
 
 #questionTracker div:nth-of-type(1n) {
@@ -122,44 +141,30 @@
   height: 60%;
 }
 
-.scoreContainer {
-  width: 100%;
-}
-
 #scoreSpace {
   text-align: center;
-  position: fixed;
-  bottom: 0;
-  right: 0;
   width: 25%;
-  height: 300px;
+  height: 100%;
   background-color: #482478;
-  border-radius: 150px 0 0 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
   font-weight: 800;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 #test1 {
-  font-size: 7em;
+  font-size: 3em;
 }
 
 #test2 {
-  font-size: 1.75em;
+  font-size: 1em;
   position: relative;
   bottom: 5%;
-}
-
-#questionTracker {
-  width: 75%;
-  height: 100px;
-  background-color: #7E60A9;
-  position: fixed;
-  bottom: 0;
-  left: 0;
 }
 
 .gameEnd {
@@ -187,13 +192,15 @@
 }
 
 .correctClick {
-  background-color: #c44b8f;
+  background-color: #419ee0;
   color: black;
+  transition: none;
 }
 
 .incorrectClick {
   background-color: #c44b8f;
   color: black;
+  transition: none;
 }
 
 .noEvents {
