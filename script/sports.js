@@ -114,7 +114,7 @@ const appendQuestionsToDOM = function(questionArray) {
           $('.qs' + (qNumber + 1)).addClass('active');
           changeActiveQuestion(qNumber + 1, end, callback);
           console.log('timing out');
-        }, 0);
+        }, 1000);
       });
     } else {
       if (callback) {
