@@ -1,3 +1,9 @@
+let $APIurl = "";
+
+$('#sportsPick').click(function () {
+  let $APIurl = "https://opentdb.com/api.php?amount=10&category=21";
+});
+
 /**
 shuffle()
 shuffles an array
@@ -108,7 +114,7 @@ const appendQuestionsToDOM = function(questionArray) {
           $('.qs' + (qNumber + 1)).addClass('active');
           changeActiveQuestion(qNumber + 1, end, callback);
           console.log('timing out');
-        }, 1000);
+        }, 0);
       });
     } else {
       if (callback) {
@@ -189,8 +195,16 @@ $(function() {
         processedQuestions.length - 1,
         function() {
           console.log('success');
-          let $gameStats = '<p>' + score + ' / ' + processedQuestions.length + '</p>';
-          $('.gameEnd').append($gameStats);
+          let $winner = '';
+          if (score < 5) {
+            $winner = '<p>Hmmm... back to the books.</p><p>You only answered</p>';
+          } else if (score < 7) {
+            $winner = '<p>Your trivia knowledge is aggresively average.</p><p>You answered</p>';
+          } else {
+            $winner = '<p>CONGRATULATIONS!</p><p>You answered</p>';
+          }
+          let $gameStats = '<p>' + score + ' / ' + processedQuestions.length + '</p><p>correctly.</p>';
+          $('.gameEnd').append($winner).append($gameStats);
           $('.gameEnd').addClass('gameEndActive');
         }
       );
