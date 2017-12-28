@@ -169,7 +169,7 @@ body {
 
 .gameEnd {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
@@ -186,6 +186,7 @@ body {
   opacity: 0;
   transition: opacity 500ms;
   text-align: center;
+  padding: 100px;
 }
 
 .gameEnd p {
@@ -197,7 +198,7 @@ body {
 }
 
 .gameEnd p:nth-child(3) {
-  font-size: 80pt;
+  font-size: 2em;
 }
 
 .gameEndActive {
@@ -219,4 +220,26 @@ body {
 
 .noEvents {
   pointer-events: none;
+}
+
+.endGameButtons {
+  display: flex;
+}
+
+.endGameButtons button {
+  width: 225px;
+  background: transparent;
+  border: 3px solid white;
+  color: white;
+  margin: 10px;
+  margin-top: 75px;
+  padding: 15px;
+  letter-spacing: 2px;
+  font-size: 14pt;
+  cursor: pointer;
+}
+
+.endGameButtons button:hover {
+  background:white;
+  color: #482478;
 }

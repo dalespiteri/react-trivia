@@ -204,7 +204,12 @@ $(function() {
             $winner = '<p>CONGRATULATIONS!</p><p>You answered</p>';
           }
           let $gameStats = '<p>' + score + ' / ' + processedQuestions.length + '</p><p>correctly.</p>';
-          $('.gameEnd').append($winner).append($gameStats);
+          let $buttons =
+            '<div class="endGameButtons">' +
+            '<button onclick="location.reload()">play again</button>' +
+            '<a href="categories.html"><button>new category</button></a>' +
+            '</div>';
+          $('.gameEnd').append($winner).append($gameStats).append($buttons);
           $('.gameEnd').addClass('gameEndActive');
         }
       );

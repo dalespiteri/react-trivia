@@ -46,7 +46,16 @@
   }
 
   .gameEnd {
-    font-size: 6em;
+    padding: 50px;
+    font-size: 20pt;
+  }
+
+  .endGameButtons {
+    flex-direction: column;
+  }
+
+  .endGameButtons button:last-child {
+    margin-top: 10px;
   }
 
 }
@@ -71,10 +80,6 @@
 
   .scoreContainer {
     height: 50px;
-  }
-
-  .gameEnd {
-    font-size: 4em;
   }
 
   .questionTrackerSection img {
