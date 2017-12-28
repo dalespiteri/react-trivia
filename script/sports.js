@@ -63,21 +63,13 @@ const processQuestions = function(questionArray) {
  */
 const appendQuestionsToDOM = function(questionArray) {
   $questionHead = $("#headQuestion"); // get our head question div that's already in the dom.
-
   questionArray.forEach(function(q, index) {
     // for each question.
-    debugger;
     let $questionSpace = $('<div class="questionSpace qs' + index +'"></div>');
     let $question = $('<div class="question">' + q.question + '</div>');
-    if (index == (questionArray.length - 1)) {
-      let $answers = $('<ul>' + q.answers.map(function(a){
-        return '<li class="answerFinal' + (a.correct ? ' correct' : '') + '">' + a.answer + '</li>'
-      }).join('') + '</ul>');
-    } else {
-      let $answers = $('<ul>' + q.answers.map(function(a){
+    let $answers = $('<ul>' + q.answers.map(function(a){
         return '<li class="answer' + (a.correct ? ' correct' : '') + '">' + a.answer + '</li>'
       }).join('') + '</ul>');
-    }
     $questionHead.append($questionSpace);
     $questionSpace.append($question).append($answers);
   });
@@ -102,11 +94,20 @@ const appendQuestionsToDOM = function(questionArray) {
     end,
     callback
   ) {
-    if (!end || qNumber < end) {
+    if (!end || qNumber <= end) {
       $('.qs' + qNumber + ' ul li').click(function(){
-        $('.qs' + qNumber).removeClass('active');
-        $('.qs' + (qNumber + 1)).addClass('active');
-        changeActiveQuestion(qNumber + 1, end, callback);
+        if($(this).hasClass('correct') == true){
+          $(this).addClass('correctClick');
+        } else {
+          $(this).addClass('incorrectClick');
+          $('.qs' + qNumber + ' .correct').addClass('correctClick');
+        }
+        setTimeout(function(){
+          $('.qs' + qNumber).removeClass('active');
+          $('.qs' + (qNumber + 1)).addClass('active');
+          changeActiveQuestion(qNumber + 1, end, callback);
+          console.log('timing out');
+        }, 1000);
       });
     } else {
       if (callback) {
@@ -137,7 +138,6 @@ const appendScoreToDOM = function (score) {
     let $correct = '<img src="./images/right.svg" />';
     let $wrong = '<img src="./images/wrong.svg" />';
     qtArray.forEach(function (element, index) {
-      console.log(index);
       let $questionTracker = $('#questionTracker div:nth-child(' + (index + 1) + ')');
       if (element === true) {
         $questionTracker.empty().append($correct);
@@ -166,12 +166,13 @@ $(function() {
       // but we'd still need to call that seperate function inside this callback.
       $('.qs0').addClass('active');
       let score = 0; // score we use for appendScoreToDOM();
+      appendScoreToDOM(score);
       let correct = []; // array used for questionTracker();
       $(".answer").click(function() {
         // set up the clicks.
 
         if ($(this).hasClass("correct")) {
-          score += 10;
+          score += 1;
           appendScoreToDOM(score);
           correct.push(true);
           questionTracker(correct);
@@ -187,6 +188,9 @@ $(function() {
         processedQuestions.length - 1,
         function() {
           console.log('success');
+          let $gameStats = '<p>' + score + ' / ' + processedQuestions.length + '</p>';
+          $('.gameEnd').append($gameStats);
+          $('.gameEnd').addClass('gameEndActive');
         }
       );
     }
