@@ -4,11 +4,6 @@
   box-sizing: border-box;
 }
 
-body {
-  min-height: 100vh;
-  background: linear-gradient(to top left, #7E60A9, #D65DB1, #FF6F91, #FF9671, #FFC75F, #F9F871);
-}
-
 ul {
   text-align: center;
   color: white;

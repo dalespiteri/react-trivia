@@ -6,9 +6,10 @@
   box-sizing: border-box;
 }
 
-body {
+.container {
+  width: 100%;
   min-height: 100vh;
-  background: linear-gradient(to top left, #7E60A9, #D65DB1, #FF6F91, #FF9671, #FFC75F, #F9F871);
+  background-image: linear-gradient(to right top, #c44b8f, #a83e8b, #8a3487, #6a2b80, #482478);
 }
 
 .title {

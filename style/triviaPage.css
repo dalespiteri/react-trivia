@@ -12,6 +12,10 @@ body {
   font-style: normal;
 }
 
+container {
+  padding-bottom: 200px;
+}
+
 .questionSpace {
   display: none;
 }
@@ -25,13 +29,6 @@ body {
   display: block;
   animation-name: slideUp;
   animation-duration: 500ms;
-}
-
-.container {
-  width: 100%;
-  min-height: 100vh;
-  padding-bottom: 200px;
-  background-image: linear-gradient(to right top, #c44b8f, #a83e8b, #8a3487, #6a2b80, #482478);
 }
 
 .question {
