@@ -69,9 +69,12 @@ container {
   transition: all 250ms;
 }
 
-.answer:hover,
-.answerFinal:hover {
-  background-color: #6a2b80;
+/* only use hovers on typical none touch devices */
+@media only screen and (min-width: 1224px) {
+  .answer:hover,
+  .answerFinal:hover {
+    background-color: #6a2b80;
+  }
 }
 
 .scoreContainer {
@@ -154,11 +157,11 @@ container {
   right: 0;
 }
 
-#test1 {
+#scoreSpace p:first-child {
   font-size: 3em;
 }
 
-#test2 {
+#scoreSpace p:last-child {
   font-size: 1em;
   position: relative;
   bottom: 5%;

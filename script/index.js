@@ -1,4 +1,24 @@
 /**
+getAPIURL()
+creates a variable for the correct API URL for each page
+*/
+
+let $APIurl = "";
+const getAPIURL = function() {
+  if ($('.container').hasClass('sports')) {
+    $APIurl = "https://opentdb.com/api.php?amount=10&category=21";
+  } else if ($('.container').hasClass('books')) {
+    $APIurl = "https://opentdb.com/api.php?amount=10&category=10";
+  } else if ($('.container').hasClass('everything')) {
+    $APIurl = "https://opentdb.com/api.php?amount=10";
+  } else if ($('.container').hasClass('general')) {
+    $APIurl = "https://opentdb.com/api.php?amount=10&category=9";
+  } else if ($('.container').hasClass('movies')) {
+    $APIurl = "https://opentdb.com/api.php?amount=10&category=11";
+  }
+}
+
+/**
 shuffle()
 shuffles an array
 @param {array} arr
@@ -125,7 +145,7 @@ const appendQuestionsToDOM = function(questionArray) {
   */
 const appendScoreToDOM = function (score, qN) {
   let $scoreSpace = $('#scoreSpace'); // get our DIV for our score
-  let $score = '<p id="test1">' + score + ' / ' + qN + '<p/><p id="test2">answered correctly</p>';
+  let $score = '<p>' + score + ' / ' + qN + '<p/><p>answered correctly</p>';
   $scoreSpace.empty().append($score); // empty the DIV before updating it with a new value
 }
 
@@ -151,10 +171,13 @@ const appendScoreToDOM = function (score, qN) {
 /**
  * $(document.ready)  // shorthand for $(document).ready(function() { ... });\
  */
+
+getAPIURL();
+
 $(function() {
   $.ajax({
     type: "GET",
-    url: "https://opentdb.com/api.php?amount=10&category=9",
+    url: $APIurl,
     success: function(data) {
       const processedQuestions = processQuestions(data.results);
       console.log(processedQuestions);

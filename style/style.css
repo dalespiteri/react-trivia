@@ -1,5 +1,10 @@
 @import url("https://use.typekit.net/hac8cze.css");
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -10,34 +15,4 @@
   width: 100%;
   min-height: 100vh;
   background-image: linear-gradient(to right top, #c44b8f, #a83e8b, #8a3487, #6a2b80, #482478);
-}
-
-.title {
-  font-family: filson-soft, sans-serif;
-  font-style: normal;
-  font-weight: 800;
-  text-transform: uppercase;
-  text-align: center;
-  font-size: 15em;
-  color: white;
-  text-shadow: 0 10px 30px rgba(0,0,0,0.35);
-  margin-bottom: -20px;
-}
-
-.chooseCat {
-  text-align: center;
-  background: none;
-  border: 3pt solid white;
-  font-size: 2.5em;
-  font-family: filson-soft, sans-serif;
-  font-style: normal;
-  font-weight: 300;
-  text-transform: uppercase;
-  color: white;
-  padding: 10px 20px;
-  text-shadow: 0 5px 15px rgba(0,0,0,0.35);
-  margin-left: 50%;
-  transform: translateX(-50%);
-  letter-spacing: 0.25em;
-  text-indent: 0.25em;
 }
