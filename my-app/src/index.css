@@ -40,9 +40,8 @@
   background: none;
   border: 3px solid white;
   font-size: 1.75em;
-  text-transform: uppercase;
   color: white;
-  letter-spacing: 5px;
+  letter-spacing: 7px;
   text-indent: 1.5px;
   cursor: pointer;
 }
@@ -50,4 +49,42 @@
 .chooseCat:hover {
   background: white;
   color: #482478;
+}
+
+/* CATEGORIES SECTION */
+
+ul {
+  width: 300px;
+  margin: auto;
+  text-align: center;
+  color: white;
+  font-size: 1.5em;
+  letter-spacing: 4px;
+  padding-top: 200px;
+  list-style: none;
+}
+
+@media only screen and (max-width: 480px) {
+  ul {
+    padding-top: 50px;
+    font-size: 1em;
+  }
+}
+
+ul li {
+  width: 275px;
+  margin: 30px auto;
+  border: 3px solid white;
+  padding: 20px;
+  transition: width 200ms;
+}
+
+ul li:hover {
+  background: white;
+  color: #482478;
+  width: 300px;
+}
+
+ul li:last-child {
+  margin-bottom: 0;
 }

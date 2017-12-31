@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import './index.css';
 import './style.css';
+import Title from './Title';
+import Categories from './Categories';
 
 class App extends Component {
   render() {
     return (
       <div className="container">
-        <div className="title">
-          <h1>Trivia</h1>
-        </div>
-        <div className="chooseCat">select your category</div>
+        <Title />
+        <Categories />
       </div>
     );
   }
