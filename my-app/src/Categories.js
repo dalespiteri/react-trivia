@@ -3,24 +3,24 @@ import React, { Component } from 'react';
 class Categories extends Component {
   render() {
     return(
-      <div className="categories">
-       <ul id="categoryList">
-         <li>
+      <div id="categories">
+        <ul id="categoryList">
+          <a href="#questionsContainer"><li onClick={this.props.onClick}>
            sports
-         </li>
-         <li>
+          </li></a>
+          <a href="#questionsContainer"><li onClick={this.props.onClick}>
            books
-         </li>
-         <li>
+          </li></a>
+          <a href="#questionsContainer"><li onClick={this.props.onClick}>
            movies
-         </li>
-         <li>
+          </li></a>
+          <a href="#questionsContainer"><li onClick={this.props.onClick}>
            general
-         </li>
-         <li>
+          </li></a>
+          <a href="#questionsContainer"><li onClick={this.props.onClick}>
            everything
-         </li>
-       </ul>
+          </li></a>
+        </ul>
       </div>
     );
   }

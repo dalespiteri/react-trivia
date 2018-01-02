@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './index.css';
-import './style.css';
+import './style/index.css';
+import './style/style.css';
 
 class Title extends Component {
 
@@ -11,7 +11,7 @@ class Title extends Component {
         <div className="title">
           <h1>{this.props.title}</h1>
         </div>
-        <a href="#categoryList"><div className="chooseCat" onClick={this.props.onClick}>select your category</div></a>
+        <a href="#categories"><div className="chooseCat" onClick={this.props.onClick}>select your category</div></a>
       </div>
     );
   }
