@@ -4,7 +4,7 @@ class Categories extends Component {
   render() {
     return(
       <div className="categories">
-       <ul>
+       <ul id="categoryList">
          <li>
            sports
          </li>

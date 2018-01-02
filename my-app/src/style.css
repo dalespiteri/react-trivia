@@ -13,7 +13,8 @@ a {
 .container {
   width: 100%;
   min-height: 100vh;
-  background-image: linear-gradient(to right top, #c44b8f, #a83e8b, #8a3487, #6a2b80, #482478);
+  background-image: linear-gradient(to right top, #c44b8f, #6a2b80, #482478);
+  background-attachment: fixed;
 }
 
 h1 {
