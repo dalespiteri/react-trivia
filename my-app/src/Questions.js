@@ -6,29 +6,31 @@ class Questions extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {questions: []};
+    this.state = {question: 0};
+    this.nextQuestion = this.nextQuestion.bind(this);
   }
 
-  componentDidMount() {
-    this.questionList();
-  }
-
-  questionList() {
-    $.getJSON('https://opentdb.com/api.php?amount=10')
-      .then((fullResponse) => {
-        console.log("fullResponse", fullResponse);
-        this.setState({ questions: fullResponse.results });
-      });
+  nextQuestion() {
+    this.setState({question: (this.state.question + 1)});
   }
 
   render() {
+
+    const answers = this.props.answers.map(answer => {
+      return (
+        <li onClick={this.props.onClick}>{answer}</li>
+      )
+    });
+
     return(
       <div id="questionsContainer">
-        <div className="question">
-          <h2></h2>
-        </div>
-        <div className="answers">
-          <ul></ul>
+      <div className="questionAndAnswer">
+          <div className="question">
+            <h2>{this.props.question}</h2>
+          </div>
+          <div className="answer">
+            <ul>{answers}</ul>
+          </div>
         </div>
       </div>
     );

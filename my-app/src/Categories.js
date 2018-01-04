@@ -2,25 +2,21 @@ import React, { Component } from 'react';
 
 class Categories extends Component {
   render() {
+
+    const categoryList = ["movies", "sports", "books", "general", "everything"];
+    const categoryListItems = categoryList.map(cat => {
+      return (
+        <a href="#questionsContainer">
+          <li onClick={this.props.onClick}>
+            {cat}
+          </li>
+        </a>
+      )
+    });
+
     return(
       <div id="categories">
-        <ul id="categoryList">
-          <a href="#questionsContainer"><li onClick={this.props.onClick}>
-           sports
-          </li></a>
-          <a href="#questionsContainer"><li onClick={this.props.onClick}>
-           books
-          </li></a>
-          <a href="#questionsContainer"><li onClick={this.props.onClick}>
-           movies
-          </li></a>
-          <a href="#questionsContainer"><li onClick={this.props.onClick}>
-           general
-          </li></a>
-          <a href="#questionsContainer"><li onClick={this.props.onClick}>
-           everything
-          </li></a>
-        </ul>
+        <ul id="categoryList">{categoryListItems}</ul>
       </div>
     );
   }
