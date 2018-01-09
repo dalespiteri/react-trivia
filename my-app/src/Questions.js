@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './style/Questions.css';
-import $ from 'jquery';
 
 class Questions extends Component {
 
@@ -17,9 +16,15 @@ class Questions extends Component {
   render() {
 
     const answers = this.props.answers.map(answer => {
-      return (
-        <li onClick={this.props.onClick}>{answer}</li>
-      )
+      if (answer.correct === true) {
+        return (
+          <li onClick={this.props.onClickCorrect}>{answer.answer}</li>
+        )
+      } else {
+        return (
+          <li onClick={this.props.onClickIncorrect}>{answer.answer}</li>
+        )
+      }
     });
 
     return(

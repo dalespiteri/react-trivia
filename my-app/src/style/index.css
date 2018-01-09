@@ -1,3 +1,10 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {opacity: 1;}
+}
+
 .title {
   width: 100%;
   text-align: center;
@@ -28,8 +35,7 @@
 }
 
 .chooseCat {
-  width: 75%;
-  max-width: 600px;
+  width: 600px;
   margin: auto;
   padding: 20px;
   text-align: center;
@@ -40,14 +46,13 @@
   letter-spacing: 7px;
   text-indent: 1.5px;
   cursor: pointer;
-  transition: all 250ms;
+  transition: width 175ms ease-out;
 }
 
 .chooseCat:hover {
   background: white;
   color: #482478;
   width: 100%;
-  max-width: 100%;
 }
 
 /* CATEGORIES SECTION */
@@ -58,14 +63,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(150px);
-  }
-  to {opacity: 1;}
 }
 
 #categoryList {
@@ -97,7 +94,7 @@
   margin: 30px auto;
   border: 3px solid white;
   padding: 20px;
-  transition: all 500ms;
+  transition: width 175ms ease-out;
   cursor: pointer;
 }
 
