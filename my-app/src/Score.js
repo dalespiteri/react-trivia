@@ -4,22 +4,19 @@ import ScoreTracker from './ScoreTracker';
 
 class Score extends Component {
   render() {
+
+    let scoreTrackerRepeat = [];
+    for (let i = 0; i < this.props.total; i++) {
+      scoreTrackerRepeat.push(<ScoreTracker correct={this.props.correct[i]} />)
+    }
+
     return (
       <div className="scoreContainer">
         <div className="correctTracker">
-          <ScoreTracker correct={this.props.correct[0]} />
-          <ScoreTracker correct={this.props.correct[1]} />
-          <ScoreTracker correct={this.props.correct[2]} />
-          <ScoreTracker correct={this.props.correct[3]} />
-          <ScoreTracker correct={this.props.correct[4]} />
-          <ScoreTracker correct={this.props.correct[5]} />
-          <ScoreTracker correct={this.props.correct[6]} />
-          <ScoreTracker correct={this.props.correct[7]} />
-          <ScoreTracker correct={this.props.correct[8]} />
-          <ScoreTracker correct={this.props.correct[9]} />
+          {scoreTrackerRepeat}
         </div>
         <div className="scoreTracker">
-        <p>{this.props.score}/10</p>
+        <p>{this.props.score}/{this.props.total}</p>
         <p>answered correctly</p>
         </div>
       </div>

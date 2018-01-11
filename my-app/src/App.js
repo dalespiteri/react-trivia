@@ -17,6 +17,7 @@ class App extends Component {
       showCategories: false,
       showQuestions: false,
       question: 0,
+      questionTotal: null,
       correct: [],
       score: 0,
       showFinal: false
@@ -34,7 +35,7 @@ class App extends Component {
   }
 
   showQuestions() {
-    this.setState({showQuestions: true})
+    this.setState({showQuestions: true});
   }
 
   nextQuestionCorrect() {
@@ -121,39 +122,36 @@ class App extends Component {
          question={questionArray[q].question}
          answers={questionArray[q].answers}
          onClickCorrect={this.lastQuestionCorrect}
-         onClickIncorrect={this.lastQuestionIncorrect} /> :
-         <div></div>;
+         onClickIncorrect={this.lastQuestionIncorrect} />
+         : null;
     } else {
       questionRender = this.state.showQuestions?
         <Questions
          question={questionArray[q].question}
          answers={questionArray[q].answers}
          onClickCorrect={this.nextQuestionCorrect}
-         onClickIncorrect={this.nextQuestionIncorrect} /> :
-         <div></div>;
+         onClickIncorrect={this.nextQuestionIncorrect} />
+         : null;
     }
 
     return (
       <div className="container">
         <Title title="trivia" onClick={this.showCategories} />
-        { this.state.showCategories? <Categories onClick={this.showQuestions} /> : <div></div> }
+        { this.state.showCategories
+          ? <Categories onClick={this.showQuestions} />
+          : null }
 
-        { this.state.showQuestions? questionRender : <div></div>};
+        { this.state.showQuestions?
+          questionRender
+          : null};
 
-        { this.state.showQuestions? <Score score={this.state.score} correct={[
-          this.state.correct[0],
-          this.state.correct[1],
-          this.state.correct[2],
-          this.state.correct[3],
-          this.state.correct[4],
-          this.state.correct[5],
-          this.state.correct[6],
-          this.state.correct[7],
-          this.state.correct[8],
-          this.state.correct[9],
-        ]} /> : <div></div> }
+        { this.state.showQuestions?
+          <Score score={this.state.score} total={l} correct={this.state.correct} />
+          : null }
 
-        { this.state.showFinal? <Final score={this.state.score} total={l} /> : <div></div> };
+        { this.state.showFinal?
+          <Final score={this.state.score} total={l} />
+          : null };
 
       </div>
     );
