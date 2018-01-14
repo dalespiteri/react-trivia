@@ -108,31 +108,17 @@ class App extends Component {
       }
     ];
 
-    let q = this.state.question;
     let l = questionArray.length;
-    let questionRender = "";
+    let q = (this.state.question >= l) ? (l - 1) : this.state.question;
+    let isLastQuestion = this.state.question === (questionArray.length - 1);
 
-    if (q >= l) {
-      q = (l - 1);
-    }
-
-    if (q === (l - 1)) {
-      questionRender = this.state.showQuestions?
-        <Questions
-         question={questionArray[q].question}
-         answers={questionArray[q].answers}
-         onClickCorrect={this.lastQuestionCorrect}
-         onClickIncorrect={this.lastQuestionIncorrect} />
-         : null;
-    } else {
-      questionRender = this.state.showQuestions?
-        <Questions
-         question={questionArray[q].question}
-         answers={questionArray[q].answers}
-         onClickCorrect={this.nextQuestionCorrect}
-         onClickIncorrect={this.nextQuestionIncorrect} />
-         : null;
-    }
+    let questionRender = this.state.showQuestions ?
+      <Questions
+        question={questionArray[q].question}
+        answers={questionArray[q].answers}
+        onClickCorrect={isLastQuestion ? this.lastQuestionCorrect : this.nextQuestionCorrect}
+        onClickIncorrect={isLastQuestion ? this.lastQuestionIncorrect : this.nextQuestionCorrect} />
+        : null;
 
     return (
       <div className="container">
