@@ -16,11 +16,13 @@ class App extends Component {
     this.state = {
       showCategories: false,
       showQuestions: false,
-      question: 0,
+      isQuestionLoaded: false,
+      questions: [],
+      questionNumber: 0,
       questionTotal: null,
       correct: [],
       score: 0,
-      showFinal: false
+      showFinal: false,
     };
     this.showCategories = this.showCategories.bind(this);
     this.showQuestions = this.showQuestions.bind(this);
@@ -28,6 +30,55 @@ class App extends Component {
     this.nextQuestionIncorrect = this.nextQuestionIncorrect.bind(this);
     this.lastQuestionCorrect = this.lastQuestionCorrect.bind(this);
     this.lastQuestionIncorrect = this.lastQuestionIncorrect.bind(this);
+  }
+
+  componentWillMount() {
+
+    fetch('https://opentdb.com/api.php?amount=8')
+    .then(results => {
+      return results.json();
+      }).then(data => {
+        let questions = data.results;
+
+        const shuffle = function(arr) {
+          let temp = null;
+          let l = arr.length;
+          arr.forEach(function(element, index) {
+            let randomPick = Math.floor(Math.random() * l);
+            temp = arr[randomPick];
+            arr[randomPick] = arr[index];
+            arr[index] = temp;
+          });
+          return arr;
+        };
+
+        const processQuestions = function(questionArray) {
+        return questionArray.map(function(question) {
+        let answers = question.incorrect_answers.map(function(incor) {
+        return {
+        answer: incor,
+        correct: false
+        };
+        });
+        answers = answers.concat({
+        answer: question.correct_answer,
+        correct: true
+        });
+        answers = shuffle(answers);
+        return {
+        question: question.question,
+        answers: answers
+        };
+        });
+        };
+
+        questions = shuffle(questions);
+        questions = processQuestions(questions);
+
+        this.setState({questions: questions});
+        console.log(this.state.questions);
+        this.setState({isQuestionLoaded: true});
+      })
   }
 
   showCategories() {
@@ -39,7 +90,7 @@ class App extends Component {
   }
 
   nextQuestionCorrect() {
-    this.setState({question: (this.state.question + 1)});
+    this.setState({questionNumber: (this.state.questionNumber + 1)});
     this.setState({score: (this.state.score + 1)});
     let correctArray = this.state.correct;
     correctArray.push(Right);
@@ -47,7 +98,7 @@ class App extends Component {
   }
 
   nextQuestionIncorrect() {
-    this.setState({question: (this.state.question + 1)});
+    this.setState({questionNumber: (this.state.questionNumber + 1)});
     let correctArray = this.state.correct;
     correctArray.push(Wrong);
     this.setState({correct: correctArray});
@@ -68,56 +119,16 @@ class App extends Component {
 
   render() {
 
-    let questionArray = [
-      {
-        question: "why?",
-        answers:[
-          {
-            answer: "because",
-            correct: true
-          }, {
-            answer: "because maybe",
-            correct: false
-          }, {
-            answer: "random third answer",
-            correct: false
-          }
-        ]
-      }, {
-        question: "when?",
-        answers:[
-          {
-            answer: "now",
-            correct: true
-          }, {
-            answer: "now maybe",
-            correct: false
-          }
-        ]
-      }, {
-        question: "who?",
-        answers: [
-          {
-            answer: "me",
-            correct: true
-          }, {
-            answer: "you",
-            correct: false
-          }
-        ]
-      }
-    ];
-
-    let l = questionArray.length;
-    let q = (this.state.question >= l) ? (l - 1) : this.state.question;
-    let isLastQuestion = this.state.question === (questionArray.length - 1);
+    let l = this.state.questions.length;
+    let isLastQuestion = this.state.questionNumber === (l - 1);
 
     let questionRender = this.state.showQuestions ?
       <Questions
-        question={questionArray[q].question}
-        answers={questionArray[q].answers}
-        onClickCorrect={isLastQuestion ? this.lastQuestionCorrect : this.nextQuestionCorrect}
-        onClickIncorrect={isLastQuestion ? this.lastQuestionIncorrect : this.nextQuestionCorrect} />
+        question={this.state.questions[this.state.questionNumber].question}
+        answers={this.state.questions[this.state.questionNumber].answers}
+        questionNumber={this.state.questionNumber}
+        onClickCorrect={ isLastQuestion ? this.lastQuestionCorrect : this.nextQuestionCorrect }
+        onClickIncorrect={ isLastQuestion ? this.lastQuestionIncorrect : this.nextQuestionIncorrect } />
         : null;
 
     return (

@@ -90,16 +90,13 @@
 }
 
 #categoryList li {
-  width: 250px;
-  margin: 30px auto;
-  border: 3px solid white;
-  padding: 20px;
-  transition: width 175ms ease-out;
+  width: 100%;
+  padding: 30px 0;
   cursor: pointer;
 }
 
 #categoryList li:hover {
-  background: white;
+  background: rgba(255, 255, 255, 0.85);
   color: #482478;
   width: 100%;
 }

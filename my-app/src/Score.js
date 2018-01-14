@@ -7,7 +7,7 @@ class Score extends Component {
 
     let scoreTrackerRepeat = [];
     for (let i = 0; i < this.props.total; i++) {
-      scoreTrackerRepeat.push(<ScoreTracker correct={this.props.correct[i]} />)
+      scoreTrackerRepeat.push(<ScoreTracker correct={this.props.correct[i]} key={"ScoreTrackerSection" + i} />)
     }
 
     return (
