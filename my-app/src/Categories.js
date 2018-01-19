@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 
 class Categories extends Component {
-  
+
   render() {
 
-    const categoryList = ["movies", "sports", "books", "general", "everything"];
-    const categoryListItems = categoryList.map(cat =>
-        <a href="#questionsContainer" key={cat + "link"}>
-          <li onClick={this.props.onClick} key={cat + "listItem"}>
-            {cat}
+    const categoryListItems = this.props.categoryList.map(cat =>
+        <a href="#questionsContainer" key={cat.category + "link"}>
+          <li onClick={cat.active} key={cat.category}>
+            {cat.category}
           </li>
         </a>
     );

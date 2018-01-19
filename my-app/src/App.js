@@ -4,10 +4,7 @@ import './style/style.css';
 import Title from './Title';
 import Categories from './Categories';
 import Questions from './Questions';
-import Score from './Score';
 import Final from './Final';
-import Right from './images/right.svg';
-import Wrong from './images/wrong.svg';
 
 class App extends Component {
 
@@ -17,137 +14,151 @@ class App extends Component {
       showCategories: false,
       showQuestions: false,
       isQuestionLoaded: false,
-      questions: [],
+      categories: [{
+        category: "movies",
+        active: this.catMovies.bind(this)
+      }, {
+        category: "sports",
+        active: this.catSports.bind(this)
+      }, {
+        category: "books",
+        active: this.catBooks.bind(this)
+      }, {
+        category: "videogames",
+        active: this.catVideogames.bind(this)
+      }, {
+        category: "general",
+        active: this.catGeneral.bind(this)
+      }, {
+        category: "everything",
+        active: this.catEverything.bind(this)
+      }],
+      categoryActive: "",
       questionNumber: 0,
       questionTotal: null,
       correct: [],
       score: 0,
       showFinal: false,
+      answerCorrect: false
     };
     this.showCategories = this.showCategories.bind(this);
-    this.showQuestions = this.showQuestions.bind(this);
     this.nextQuestionCorrect = this.nextQuestionCorrect.bind(this);
     this.nextQuestionIncorrect = this.nextQuestionIncorrect.bind(this);
     this.lastQuestionCorrect = this.lastQuestionCorrect.bind(this);
     this.lastQuestionIncorrect = this.lastQuestionIncorrect.bind(this);
-  }
-
-  componentWillMount() {
-
-    fetch('https://opentdb.com/api.php?amount=8')
-    .then(results => {
-      return results.json();
-      }).then(data => {
-        let questions = data.results;
-
-        const shuffle = function(arr) {
-          let temp = null;
-          let l = arr.length;
-          arr.forEach(function(element, index) {
-            let randomPick = Math.floor(Math.random() * l);
-            temp = arr[randomPick];
-            arr[randomPick] = arr[index];
-            arr[index] = temp;
-          });
-          return arr;
-        };
-
-        const processQuestions = function(questionArray) {
-        return questionArray.map(function(question) {
-        let answers = question.incorrect_answers.map(function(incor) {
-        return {
-        answer: incor,
-        correct: false
-        };
-        });
-        answers = answers.concat({
-        answer: question.correct_answer,
-        correct: true
-        });
-        answers = shuffle(answers);
-        return {
-        question: question.question,
-        answers: answers
-        };
-        });
-        };
-
-        questions = shuffle(questions);
-        questions = processQuestions(questions);
-
-        this.setState({questions: questions});
-        console.log(this.state.questions);
-        this.setState({isQuestionLoaded: true});
-      })
+    this.catMovies = this.catMovies.bind(this);
   }
 
   showCategories() {
     this.setState({showCategories: true})
   }
 
-  showQuestions() {
+  catMovies(testURL) {
+    this.setState({categoryActive: "https://opentdb.com/api.php?amount=10&category=11"});
+    this.setState({showQuestions: true});
+  }
+
+  catSports() {
+    this.setState({categoryActive: "https://opentdb.com/api.php?amount=10&category=21"});
+    this.setState({showQuestions: true});
+  }
+
+  catBooks() {
+    this.setState({categoryActive: "https://opentdb.com/api.php?amount=10&category=10"});
+    this.setState({showQuestions: true});
+  }
+
+  catVideogames() {
+    this.setState({categoryActive: "https://opentdb.com/api.php?amount=10&category=15"});
+    this.setState({showQuestions: true});
+  }
+
+  catGeneral() {
+    this.setState({categoryActive: "https://opentdb.com/api.php?amount=10&category=9"});
+    this.setState({showQuestions: true});
+  }
+
+  catEverything() {
+    this.setState({categoryActive: "https://opentdb.com/api.php?amount=10"});
     this.setState({showQuestions: true});
   }
 
   nextQuestionCorrect() {
-    this.setState({questionNumber: (this.state.questionNumber + 1)});
+    this.setState({answerCorrect: true});
     this.setState({score: (this.state.score + 1)});
     let correctArray = this.state.correct;
-    correctArray.push(Right);
+    correctArray.push(true);
     this.setState({correct: correctArray});
+    setTimeout(() => {
+      this.setState({questionNumber: (this.state.questionNumber + 1)});
+      this.setState({answerCorrect: false});
+    }, 2000);
   }
 
   nextQuestionIncorrect() {
-    this.setState({questionNumber: (this.state.questionNumber + 1)});
+    this.setState({answerCorrect: true});
     let correctArray = this.state.correct;
-    correctArray.push(Wrong);
+    correctArray.push(false);
     this.setState({correct: correctArray});
+    setTimeout(() => {
+      this.setState({questionNumber: (this.state.questionNumber + 1)});
+      this.setState({answerCorrect: false});
+    }, 2000);
   }
 
   lastQuestionCorrect() {
     this.setState({score: (this.state.score + 1)});
-    this.setState({showQuestions: false});
-    this.setState({showCategories: false});
-    this.setState({showFinal: true});
+    this.setState({answerCorrect: true});
+    let correctArray = this.state.correct;
+    correctArray.push(true);
+    this.setState({correct: correctArray});
+    setTimeout(() => {
+      this.setState({showQuestions: false});
+      this.setState({showCategories: false});
+      this.setState({showFinal: true});
+    }, 2000);
   }
 
   lastQuestionIncorrect() {
-    this.setState({showQuestions: false});
-    this.setState({showCategories: false});
-    this.setState({showFinal: true});
+    this.setState({answerCorrect: true});
+    let correctArray = this.state.correct;
+    correctArray.push(false);
+    this.setState({correct: correctArray});
+    setTimeout(() => {
+      this.setState({showQuestions: false});
+      this.setState({showCategories: false});
+      this.setState({showFinal: true});
+    },2000);
   }
 
   render() {
 
-    let l = this.state.questions.length;
-    let isLastQuestion = this.state.questionNumber === (l - 1);
-
     let questionRender = this.state.showQuestions ?
       <Questions
-        question={this.state.questions[this.state.questionNumber].question}
-        answers={this.state.questions[this.state.questionNumber].answers}
-        questionNumber={this.state.questionNumber}
-        onClickCorrect={ isLastQuestion ? this.lastQuestionCorrect : this.nextQuestionCorrect }
-        onClickIncorrect={ isLastQuestion ? this.lastQuestionIncorrect : this.nextQuestionIncorrect } />
+        category={ this.state.categoryActive }
+        questionNumber={ this.state.questionNumber }
+        onClickCorrect={ this.nextQuestionCorrect }
+        onClickCorrectLast={ this.lastQuestionCorrect }
+        onClickIncorrect={ this.nextQuestionIncorrect }
+        onClickIncorrectLast={ this.lastQuestionIncorrect }
+        score={ this.state.score }
+        correct={ this.state.correct }
+        answerCorrect={ this.state.answerCorrect } />
         : null;
 
     return (
       <div className="container">
-        <Title title="trivia" onClick={this.showCategories} />
+        <Title title="trivia" onClick={ this.showCategories } />
         { this.state.showCategories
-          ? <Categories onClick={this.showQuestions} />
+          ? <Categories categoryList={ this.state.categories } onClick={ this.catMovies } />
           : null }
 
         { this.state.showQuestions?
           questionRender
           : null};
 
-        { this.state.showQuestions?
-          <Score score={this.state.score} total={l} correct={this.state.correct} />
-          : null }
-
-        { this.state.showFinal?
-          <Final score={this.state.score} total={l} />
+        { this.state.showFinal ?
+          <Final score={this.state.score} total={10} />
           : null };
 
       </div>

@@ -2,3 +2,6 @@
 [0114/172537.114:ERROR:process_info.cc(632)] range at 0x60c95da400000000, size 0x21b fully unreadable
 [0114/172537.114:ERROR:process_info.cc(632)] range at 0x0, size 0x21b fully unreadable
 [0114/180433.260:ERROR:crash_report_database_win.cc(427)] unexpected header
+[0114/200547.142:ERROR:crash_report_database_win.cc(427)] unexpected header
+[0114/231634.895:ERROR:crash_report_database_win.cc(427)] unexpected header
+[0116/195655.213:ERROR:crash_report_database_win.cc(427)] unexpected header

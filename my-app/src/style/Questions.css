@@ -1,14 +1,23 @@
 #questionsContainer {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
-.questionAndAnswer {
-  animation: fadeIn 1250ms;
+@@keyframes slideAndFade {
+  from {opacity: 0; top: 200px}
+  to {opacity: 1; top: 0}
 }
 
-.question {
+.questionAndAnswer {
+  position: relative;
+  animation-name: slideAndFade;
+  animation-duration: 750ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.questionDiv {
   width: 50%;
   margin-left: auto;
   margin-right: auto;
@@ -16,18 +25,18 @@
   margin-bottom: 50px;
 }
 
-.question h2 {
+.questionDiv h2 {
   font-family: 'Patua One', sans-serif;
   font-style: normal;
   text-transform: uppercase;
   text-align: center;
-  font-size: 3em;
+  font-size: 2em;
   letter-spacing: 3px;
   color: white;
   text-shadow: 3px 3px 5px #482478;
 }
 
-.answer ul li {
+.answer {
   background-color: #482478;
   margin: auto;
   margin-top: 25px;
@@ -47,26 +56,37 @@
   position: relative;
 }
 
+.answerCorrect {
+  background-color: #419ee0;
+  margin: auto;
+  margin-top: 25px;
+  font-weight: 400;
+  text-align: center;
+  font-size: 1em;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 2px;
+  padding: 20px;
+  width: 20%;
+  list-style: none;
+  color: black;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 150ms;
+  position: relative;
+}
+
 .answer ul li:hover {
   background-color: blue;
 }
 
 .example-enter {
-  left: 500px;
-  opacity: 0;
+  opacity: 0.01;
+  top: 200px;
 }
 
-.example-enter.example-enter-active {
-  left: 0;
+.example-enter-active {
   opacity: 1;
-  transition: all 250ms;
-}
-
-.example-leave {
-  opacity: 1;
-}
-
-.example-leave.example-leave-active {
-  opacity: 0;
-  transition: opacity 0ms ease-in;
+  top: 0;
+  transition: all 750ms ease;
 }
