@@ -13,13 +13,30 @@ class Questions extends Component {
     };
   }
 
+  // const decodeHTML = (str) => {
+  //   const map = {
+  //     "&gt;": ">",
+  //     "&quot;":"\"",
+  //     /* etc */
+  //   };
+  //   return str.replace(/&(#(?:x[0-9a-f]+|\d+)|[a-z]+);?/gi, ($0, $1) => {
+  //     if ($1[0] === "#") {
+  //       return String.fromCharCode($1[1].toLowerCase() === "x" ? parseInt($1.substr(2), 16) : parseInt($1.substr(1), 10));
+  //     } else {
+  //       return map.hasOwnProperty($1) ? map[$1] : $0;
+  //     }
+  //   });
+  // }
+
   componentWillMount() {
 
     fetch(this.props.category)
     .then(results => {
       return results.json();
       }).then(data => {
-        let questions = data.results;
+        let questions = data.results.map((question) => {
+            return question;
+        })
 
         const shuffle = function(arr) {
           let temp = null;
@@ -58,9 +75,7 @@ class Questions extends Component {
         };
 
         questions = processQuestions(questions);
-        console.log(questions);
-        this.setState({questions: questions});
-        this.setState({isQuestionLoaded: true});
+        this.setState({questions: questions, isQuestionLoaded: true});
       })
   }
 
@@ -88,8 +103,8 @@ class Questions extends Component {
                 key={answer.answer}
                 className={
                   answer.correct ?
-                  this.props.answerCorrect ? "answerCorrect" : "answer"
-                  : "answer"
+                  this.props.answerCorrect ? "answerCorrect noClickEvent" : "answer"
+                  : this.props.answerCorrect ? "answer noClickEvent" : "answer"
                 }
                 onClick={
                   answer.correct ?
