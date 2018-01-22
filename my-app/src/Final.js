@@ -8,6 +8,10 @@ class Final extends Component {
         <p>Your score was</p>
         <p>{this.props.score} / {this.props.total}</p>
         <p>great job!</p>
+        <a href="#questionsContainer">
+          <button onClick={this.props.onClickReplay}>replay</button>
+        </a>
+        <button onClick={this.props.onClickNew}>new category</button>
       </div>
     );
   }

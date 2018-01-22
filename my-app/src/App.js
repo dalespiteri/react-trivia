@@ -47,6 +47,7 @@ class App extends Component {
     this.lastQuestionCorrect = this.lastQuestionCorrect.bind(this);
     this.lastQuestionIncorrect = this.lastQuestionIncorrect.bind(this);
     this.catMovies = this.catMovies.bind(this);
+    this.onClickReplay = this.onClickReplay.bind(this);
   }
 
   showCategories() {
@@ -92,7 +93,7 @@ class App extends Component {
     setTimeout(() => {
       this.setState({questionNumber: (this.state.questionNumber + 1)});
       this.setState({answerCorrect: false});
-    }, 2000);
+    }, 1250);
   }
 
   nextQuestionIncorrect() {
@@ -103,7 +104,7 @@ class App extends Component {
     setTimeout(() => {
       this.setState({questionNumber: (this.state.questionNumber + 1)});
       this.setState({answerCorrect: false});
-    }, 2000);
+    }, 1750);
   }
 
   lastQuestionCorrect() {
@@ -116,7 +117,7 @@ class App extends Component {
       this.setState({showQuestions: false});
       this.setState({showCategories: false});
       this.setState({showFinal: true});
-    }, 2000);
+    }, 1250);
   }
 
   lastQuestionIncorrect() {
@@ -128,7 +129,19 @@ class App extends Component {
       this.setState({showQuestions: false});
       this.setState({showCategories: false});
       this.setState({showFinal: true});
-    },2000);
+    },1750);
+  }
+
+  onClickReplay() {
+    this.setState({
+      showQuestions: true,
+      showFinal: false,
+      questionNumber: 0,
+      questionTotal: null,
+      correct: [],
+      score: 0,
+      answerCorrect: false
+    });
   }
 
   render() {
@@ -153,12 +166,14 @@ class App extends Component {
           ? <Categories categoryList={ this.state.categories } onClick={ this.catMovies } />
           : null }
 
-        { this.state.showQuestions?
-          questionRender
-          : null};
+        { questionRender }
 
         { this.state.showFinal ?
-          <Final score={this.state.score} total={10} />
+          <Final
+          score={this.state.score}
+          total={10}
+          onClickReplay={this.onClickReplay}
+          onClickNew={this.onClickNew} />
           : null };
 
       </div>

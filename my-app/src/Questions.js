@@ -76,6 +76,7 @@ class Questions extends Component {
 
         questions = processQuestions(questions);
         this.setState({questions: questions, isQuestionLoaded: true});
+        console.log(this.state);
       })
   }
 
