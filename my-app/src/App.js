@@ -48,6 +48,7 @@ class App extends Component {
     this.lastQuestionIncorrect = this.lastQuestionIncorrect.bind(this);
     this.catMovies = this.catMovies.bind(this);
     this.onClickReplay = this.onClickReplay.bind(this);
+    this.onClickNew = this.onClickNew.bind(this);
   }
 
   showCategories() {
@@ -142,6 +143,18 @@ class App extends Component {
       score: 0,
       answerCorrect: false
     });
+  }
+
+  onClickNew() {
+    this.setState({
+      showCategories: true,
+      showFinal: false,
+      questionNumber: 0,
+      questionTotal: null,
+      correct: [],
+      score: 0,
+      answerCorrect: false,
+    })
   }
 
   render() {

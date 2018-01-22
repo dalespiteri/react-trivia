@@ -11,7 +11,9 @@ class Final extends Component {
         <a href="#questionsContainer">
           <button onClick={this.props.onClickReplay}>replay</button>
         </a>
-        <button onClick={this.props.onClickNew}>new category</button>
+        <a href="#categories">
+          <button onClick={this.props.onClickNew}>new category</button>
+        </a>
       </div>
     );
   }
