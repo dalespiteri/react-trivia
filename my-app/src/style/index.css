@@ -9,10 +9,11 @@
   width: 100%;
   text-align: center;
   background-color: #482478;
+  font-family: 'Biryani', sans-serif;
+  font-weight: 800;
+  text-transform: capitalize;
   color: white;
-  text-transform: uppercase;
   font-size: 8em;
-  letter-spacing: 20px;
   margin-bottom: 50px;
 }
 
@@ -41,6 +42,7 @@
   text-align: center;
   background: none;
   border: 3px solid white;
+  text-transform: uppercase;
   font-size: 1.75em;
   color: white;
   letter-spacing: 7px;
@@ -63,6 +65,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-transform: uppercase;
 }
 
 #categoryList {

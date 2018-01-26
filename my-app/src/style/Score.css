@@ -67,7 +67,9 @@
 .scoreTracker p:first-child {
   font-size: 3em;
   letter-spacing: 3px;
-  font-family: 'Patua One', sans-serif;
+  font-family: 'Biryani', sans-serif;
+  font-weight: 800;
+  margin-bottom: -20px;
 }
 
 .scoreTracker p:last-child {

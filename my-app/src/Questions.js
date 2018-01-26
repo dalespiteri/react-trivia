@@ -30,6 +30,8 @@ class Questions extends Component {
 
   componentWillMount() {
 
+    var he = require('he');
+
     fetch(this.props.category)
     .then(results => {
       return results.json();
@@ -54,12 +56,12 @@ class Questions extends Component {
           return questionArray.map(function(question) {
             let answers = question.incorrect_answers.map(function(incor) {
               return {
-              answer: incor,
+              answer: he.decode(incor),
               correct: false
               };
             });
             answers = answers.concat({
-              answer: question.correct_answer,
+              answer: he.decode(question.correct_answer),
               correct: true
             });
             answers = answers.length > 2 ?
@@ -68,7 +70,7 @@ class Questions extends Component {
                 answers
                 : [{answer: "True", correct: true}, {answer: "False", correct: false}]
             return {
-              question: question.question,
+              question: he.decode(question.question),
               answers: answers
             };
           });

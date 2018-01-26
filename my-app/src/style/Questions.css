@@ -26,12 +26,11 @@
 }
 
 .questionDiv h2 {
-  font-family: 'Patua One', sans-serif;
-  font-style: normal;
-  text-transform: uppercase;
+  font-family: 'Biryani', sans-serif;
+  font-weight: 800;
+  text-transform: none;
   text-align: center;
-  font-size: 2em;
-  letter-spacing: 3px;
+  font-size: 2.5em;
   color: white;
   text-shadow: 3px 3px 5px #482478;
 }
@@ -42,9 +41,9 @@
   margin-top: 25px;
   font-weight: 400;
   text-align: center;
-  font-size: 1em;
+  font-size: 1.25em;
   text-transform: uppercase;
-  font-weight: 800;
+  font-weight: normal;
   letter-spacing: 2px;
   padding: 20px;
   width: 20%;
@@ -62,9 +61,9 @@
   margin-top: 25px;
   font-weight: 400;
   text-align: center;
-  font-size: 1em;
+  font-size: 1.25em;
   text-transform: uppercase;
-  font-weight: 800;
+  font-weight: normal;
   letter-spacing: 2px;
   padding: 20px;
   width: 20%;
@@ -76,8 +75,8 @@
   position: relative;
 }
 
-.answer ul li:hover {
-  background-color: blue;
+.answer:hover {
+  background-color: #221889;
 }
 
 .example-enter {

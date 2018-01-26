@@ -7,7 +7,8 @@ a {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: normal;
 }
 
 .container {
@@ -15,8 +16,4 @@ a {
   min-height: 100vh;
   background-image: linear-gradient(to right top, #c44b8f, #6a2b80, #482478);
   background-attachment: fixed;
-}
-
-h1 {
-  font-family: 'Patua One', sans-serif;
 }

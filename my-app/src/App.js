@@ -110,26 +110,34 @@ class App extends Component {
 
   lastQuestionCorrect() {
     this.setState({score: (this.state.score + 1)});
-    this.setState({answerCorrect: true});
     let correctArray = this.state.correct;
     correctArray.push(true);
-    this.setState({correct: correctArray});
+    this.setState({
+      correct: correctArray,
+      answerCorrect: true
+    });
     setTimeout(() => {
-      this.setState({showQuestions: false});
-      this.setState({showCategories: false});
-      this.setState({showFinal: true});
+      this.setState({
+        showQuestions: false,
+        showCategories: false,
+        showFinal: true
+      });
     }, 1250);
   }
 
   lastQuestionIncorrect() {
-    this.setState({answerCorrect: true});
     let correctArray = this.state.correct;
     correctArray.push(false);
-    this.setState({correct: correctArray});
+    this.setState({
+      correct: correctArray,
+      answerCorrect: true
+    });
     setTimeout(() => {
-      this.setState({showQuestions: false});
-      this.setState({showCategories: false});
-      this.setState({showFinal: true});
+      this.setState({
+        showQuestions: false,
+        showCategories: false,
+        showFinal: true
+      });
     },1750);
   }
 
