@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { CSSTransitionGroup } from 'react-transition-group';
 import Score from './Score';
-import './style/Questions.css';
+import Final from './Final';
+import './style/questions.css';
 
 class Questions extends Component {
 
@@ -12,21 +13,6 @@ class Questions extends Component {
       questions: [],
     };
   }
-
-  // const decodeHTML = (str) => {
-  //   const map = {
-  //     "&gt;": ">",
-  //     "&quot;":"\"",
-  //     /* etc */
-  //   };
-  //   return str.replace(/&(#(?:x[0-9a-f]+|\d+)|[a-z]+);?/gi, ($0, $1) => {
-  //     if ($1[0] === "#") {
-  //       return String.fromCharCode($1[1].toLowerCase() === "x" ? parseInt($1.substr(2), 16) : parseInt($1.substr(1), 10));
-  //     } else {
-  //       return map.hasOwnProperty($1) ? map[$1] : $0;
-  //     }
-  //   });
-  // }
 
   componentWillMount() {
 
@@ -88,8 +74,16 @@ class Questions extends Component {
     let isLastQuestion = this.props.questionNumber === (l - 1);
 
     return(
+      <div>
 
-      <div id="questionsContainer">
+      {this.props.showFinal ?
+        <Final
+        score={this.props.score}
+        total={l}
+        onClickReplay={this.props.onClickReplay}
+        onClickNew={this.props.onClickNew} />
+
+      : <div id="questionsContainer">
       { this.state.isQuestionLoaded ?
         <CSSTransitionGroup
           transitionName="example"
@@ -106,7 +100,7 @@ class Questions extends Component {
                 key={answer.answer}
                 className={
                   answer.correct ?
-                  this.props.answerCorrect ? "answerCorrect noClickEvent" : "answer"
+                  this.props.answerCorrect ? "answer answerCorrect noClickEvent" : "answer"
                   : this.props.answerCorrect ? "answer noClickEvent" : "answer"
                 }
                 onClick={
@@ -128,6 +122,8 @@ class Questions extends Component {
         </CSSTransitionGroup>
         : null }
         <Score score={this.props.score} total={l} correct={this.props.correct} />
+      </div>}
+
       </div>
 
     );

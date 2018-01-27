@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './style/index.css';
 import './style/style.css';
 import Title from './Title';
 import Categories from './Categories';
@@ -11,6 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showTitle: true,
       showCategories: false,
       showQuestions: false,
       isQuestionLoaded: false,
@@ -52,37 +52,58 @@ class App extends Component {
   }
 
   showCategories() {
-    this.setState({showCategories: true})
+    this.setState({
+      showCategories: true,
+      showTitle: false
+    });
   }
 
   catMovies(testURL) {
-    this.setState({categoryActive: "https://opentdb.com/api.php?amount=10&category=11"});
-    this.setState({showQuestions: true});
+    this.setState({
+      categoryActive: "https://opentdb.com/api.php?amount=10&category=11",
+      showQuestions: true,
+      showCategories: false
+    });
   }
 
   catSports() {
-    this.setState({categoryActive: "https://opentdb.com/api.php?amount=10&category=21"});
-    this.setState({showQuestions: true});
+    this.setState({
+      categoryActive: "https://opentdb.com/api.php?amount=10&category=21",
+      showQuestions: true,
+      showCategories: false
+    });
   }
 
   catBooks() {
-    this.setState({categoryActive: "https://opentdb.com/api.php?amount=10&category=10"});
-    this.setState({showQuestions: true});
+    this.setState({
+      categoryActive: "https://opentdb.com/api.php?amount=10&category=10",
+      showQuestions: true,
+      showCategories: false
+    });
   }
 
   catVideogames() {
-    this.setState({categoryActive: "https://opentdb.com/api.php?amount=10&category=15"});
-    this.setState({showQuestions: true});
+    this.setState({
+      categoryActive: "https://opentdb.com/api.php?amount=10&category=15",
+      showQuestions: true,
+      showCategories: false
+    });
   }
 
   catGeneral() {
-    this.setState({categoryActive: "https://opentdb.com/api.php?amount=10&category=9"});
-    this.setState({showQuestions: true});
+    this.setState({
+      categoryActive: "https://opentdb.com/api.php?amount=10&category=9",
+      showQuestions: true,
+      showCategories: false
+    });
   }
 
   catEverything() {
-    this.setState({categoryActive: "https://opentdb.com/api.php?amount=10"});
-    this.setState({showQuestions: true});
+    this.setState({
+      categoryActive: "https://opentdb.com/api.php?amount=10",
+      showQuestions: true,
+      showCategories: false
+    });
   }
 
   nextQuestionCorrect() {
@@ -118,7 +139,6 @@ class App extends Component {
     });
     setTimeout(() => {
       this.setState({
-        showQuestions: false,
         showCategories: false,
         showFinal: true
       });
@@ -134,7 +154,6 @@ class App extends Component {
     });
     setTimeout(() => {
       this.setState({
-        showQuestions: false,
         showCategories: false,
         showFinal: true
       });
@@ -157,6 +176,7 @@ class App extends Component {
     this.setState({
       showCategories: true,
       showFinal: false,
+      showQuestions: false,
       questionNumber: 0,
       questionTotal: null,
       correct: [],
@@ -175,27 +195,26 @@ class App extends Component {
         onClickCorrectLast={ this.lastQuestionCorrect }
         onClickIncorrect={ this.nextQuestionIncorrect }
         onClickIncorrectLast={ this.lastQuestionIncorrect }
+        onClickReplay={ this.onClickReplay }
+        onClickNew={ this.onClickNew }
         score={ this.state.score }
         correct={ this.state.correct }
-        answerCorrect={ this.state.answerCorrect } />
+        answerCorrect={ this.state.answerCorrect }
+        showFinal={ this.state.showFinal } />
         : null;
 
     return (
       <div className="container">
-        <Title title="trivia" onClick={ this.showCategories } />
+
+        { this.state.showTitle ?
+          <Title title="trivia" onClick={ this.showCategories } />
+          : null }
+
         { this.state.showCategories
           ? <Categories categoryList={ this.state.categories } onClick={ this.catMovies } />
           : null }
 
         { questionRender }
-
-        { this.state.showFinal ?
-          <Final
-          score={this.state.score}
-          total={10}
-          onClickReplay={this.onClickReplay}
-          onClickNew={this.onClickNew} />
-          : null };
 
       </div>
     );

@@ -1,20 +1,13 @@
 .gameEnd {
   position: absolute;
+  top: 0;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   color: white;
+  padding: 50px;
   background-image: linear-gradient(to right top, #c44b8f, #6a2b80, #482478);
-  bottom: 0;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   font-size: 4em;
-}
-
-.gameEnd p {
-  width: 75%;
 }
 
 .gameEnd p:nth-child(3) {
@@ -25,23 +18,65 @@
 }
 
 .replayButtons {
-  width: 40%;
+  width: 100%;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .replayButtons button {
-  width: 45%;
+  width: 300px;
+  margin: 5px;
   background: transparent;
   border: 3px solid white;
   color: white;
-  margin: 10px;
-  margin-top: 75px;
   padding: 15px;
   letter-spacing: 2px;
-  font-size: 18pt;
+  font-size: 24px;
   cursor: pointer;
 }
 
 .replayButtons button:hover {
   background:white;
   color: #482478;
+}
+
+@media only screen and (max-width: 768px) {
+
+  .gameEnd {
+    padding: 50px;
+    font-size: 3em;
+  }
+
+  .gameEnd p:nth-child(3) {
+    margin-bottom: -30px;
+  }
+
+  .replayButtons button {
+    width: 100%;
+    min-width: 50px;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+  .replayButtons button {
+    width: 100%;
+    min-width: 50px;
+    font-size: 16px;
+    margin-top: 10px;
+  }
+
+}
+
+@media only screen and (max-width: 480px) {
+
+  .gameEnd {
+    padding: 25px;
+    font-size: 2em;
+  }
+
+  .gameEnd p:nth-child(3) {
+    margin-bottom: -20px;
+  }
+
 }

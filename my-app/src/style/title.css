@@ -1,0 +1,77 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {opacity: 1;}
+}
+
+.titleContainer {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  background-color: #482478;
+  font-family: 'Kavoon', sans-serif;
+  text-transform: capitalize;
+  color: white;
+  font-size: 8em;
+  margin-bottom: 50px;
+}
+
+.chooseCat  {
+  width: 600px;
+  padding: 20px;
+  margin: auto;
+  text-align: center;
+  background: none;
+  border: 3px solid white;
+  font-size: 1.75em;
+  color: white;
+  letter-spacing: 7px;
+  text-indent: 1.5px;
+  cursor: pointer;
+  transition: width 175ms ease-out;
+}
+
+.chooseCat:hover {
+  width: 100%;
+  background: white;
+  color: #482478;
+}
+
+@media only screen and (max-width: 1224px) {
+  .title {
+    font-size: 6em;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .title {
+    font-size: 4em;
+  }
+  .chooseCat {
+    font-size: 1.25em;
+    width: 400px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .title {
+    font-size: 2em;
+  }
+
+  .chooseCat {
+    width: 75%;
+    min-width: 275px;
+    padding: 10px;
+    font-size: 1em;
+    letter-spacing: 2px;
+  }
+
+}

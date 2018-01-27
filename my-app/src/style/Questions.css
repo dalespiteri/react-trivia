@@ -1,12 +1,14 @@
-#questionsContainer {
-  width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
 @@keyframes slideAndFade {
   from {opacity: 0; top: 200px}
   to {opacity: 1; top: 0}
+}
+
+#questionsContainer {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 100px;
+  padding-bottom: 150px;
+  overflow: hidden;
 }
 
 .questionAndAnswer {
@@ -21,7 +23,6 @@
   width: 50%;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 200px;
   margin-bottom: 50px;
 }
 
@@ -46,7 +47,8 @@
   font-weight: normal;
   letter-spacing: 2px;
   padding: 20px;
-  width: 20%;
+  width: 30%;
+  min-width: 300px;
   list-style: none;
   color: white;
   border-radius: 20px;
@@ -57,22 +59,7 @@
 
 .answerCorrect {
   background-color: #419ee0;
-  margin: auto;
-  margin-top: 25px;
-  font-weight: 400;
-  text-align: center;
-  font-size: 1.25em;
-  text-transform: uppercase;
-  font-weight: normal;
-  letter-spacing: 2px;
-  padding: 20px;
-  width: 20%;
-  list-style: none;
   color: black;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: all 150ms;
-  position: relative;
 }
 
 .answer:hover {
@@ -92,4 +79,51 @@
 
 .noClickEvent {
   pointer-events: none;
+}
+
+@media only screen and (max-width: 1224px) {
+  .questionDiv {
+    width: 75%;
+  }
+
+  .questionDiv h2 {
+    font-size: 2em;
+  }
+
+  .answer {
+    width: 50%;
+    font-size: 1em;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+
+  .questionDiv h2 {
+    font-size: 1.5em;
+  }
+
+  .answer {
+    width: 50%;
+    font-size: 0.75em;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+
+  .questionDiv {
+    width: 80%;
+    margin-bottom: 25px;
+  }
+
+  .questionDiv h2 {
+    font-size: 1.25em;
+  }
+
+  .answer {
+    margin-top: 10px;
+    padding: 15px;
+    width: 75%;
+    min-width: 200px;
+  }
+
 }

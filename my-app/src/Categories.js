@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './style/categories.css';
 
 class Categories extends Component {
 

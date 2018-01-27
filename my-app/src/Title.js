@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './style/index.css';
+import './style/title.css';
 import './style/style.css';
 
 class Title extends Component {
@@ -7,7 +7,7 @@ class Title extends Component {
   render() {
 
     return (
-      <div>
+      <div className="titleContainer">
         <div className="title">
           <h1>{this.props.title}</h1>
         </div>

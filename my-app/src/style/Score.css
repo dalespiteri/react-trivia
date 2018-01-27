@@ -77,3 +77,45 @@
   position: relative;
   bottom: 5%;
 }
+
+@media only screen and (max-width: 768px) {
+
+  .scoreContainer {
+    height: 80px;
+  }
+
+  .correctTracker {
+    width: 80%;
+  }
+
+  .scoreTracker {
+    width: 20%;
+  }
+
+  .scoreTracker p:first-child {
+    font-size: 2em;
+    position: relative;
+    bottom: 5px;
+  }
+
+  .scoreTracker p:last-child {
+    display: none;
+  }
+
+}
+
+@media only screen and (max-width: 480px) {
+
+  .scoreContainer {
+    height: 60px;
+  }
+
+  .correctTracker {
+    width: 100%;
+  }
+
+  .scoreTracker {
+    display: none;
+  }
+
+}

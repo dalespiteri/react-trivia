@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './style/Score.css';
+import './style/score.css';
 import ScoreTracker from './ScoreTracker';
 
 class Score extends Component {
