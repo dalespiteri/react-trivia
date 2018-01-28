@@ -3,7 +3,6 @@ import './style/style.css';
 import Title from './Title';
 import Categories from './Categories';
 import Questions from './Questions';
-import Final from './Final';
 
 class App extends Component {
 

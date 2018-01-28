@@ -4,7 +4,7 @@
   width: 100%;
   min-height: 100vh;
   color: white;
-  padding: 50px;
+  padding: 100px;
   background-image: linear-gradient(to right top, #c44b8f, #6a2b80, #482478);
   text-align: center;
   font-size: 4em;
@@ -71,7 +71,6 @@
 @media only screen and (max-width: 480px) {
 
   .gameEnd {
-    padding: 25px;
     font-size: 2em;
   }
 
